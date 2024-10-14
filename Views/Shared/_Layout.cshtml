@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Fadhil's YouTube API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+            /* Light Mode Styles */
+            body.light-mode {
+                background-color: #ffccff; /* Light pink background */
+                color: black; /* Black text */
+            }
+
+            /* Dark Mode Styles with custom background image */
+            body.dark-mode {
+                background-image: url('https://www.onlygfx.com/wp-content/uploads/2017/01/black-wallpaper-7.jpg');
+                important ! /* Dark mode background image */
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+                color: white; /* White text */
+            }
+
+        /* Container styles for both modes */
+        .container.light-mode {
+            background-color: white; /* White box in light mode */
+            color: black; /* Black text in light mode */
+            transition: background-color 0.5s ease;
+        }
+
+        .container.dark-mode {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark box with opacity for readability */
+            color: white; /* White text in dark mode */
+            transition: background-color 0.5s ease;
+        }
+
+        /* Navbar Styles */
+        .navbar-light {
+            background-color: #7E60BF !important; /* Light purple background */
+            color: white !important; /* White text */
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar-dark {
+            background-color: #1a1a1a !important; /* Dark background for navbar in dark mode */
+            color: white !important; /* White text */
+        }
+
+        /* Navbar Link Colors */
+        .navbar-light .nav-link {
+            color: white !important; /* White text for links in light mode */
+        }
+
+        .navbar-dark .nav-link {
+            color: white !important; /* White text for links in dark mode */
+        }
+
+        /* Theme toggle styles */
+        .theme-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+
+            /* Style for toggle buttons */
+            .theme-toggle button {
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+                color: white;
+                background-color: #E4B1F0; /* Default pink background */
+            }
+
+                /* Dark Mode Active Button Styles */
+                .theme-toggle button.active {
+                    background-color: #ff3385; /* Darker pink for active button */
+                }
+
+        /* Textbox styles for dark mode */
+        .form-control.dark-mode {
+            background-color: #333 !important; /* Dark background for text inputs */
+            color: white !important; /* White text */
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="~/images/logo.png" alt="Fadhil's YouTube API Logo" width="180" height="60" class="d-inline-block align-text-top" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link @((ViewContext.RouteData.Values["controller"]?.ToString() == "Home") ? "active" : "")"
+                               href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @((ViewContext.RouteData.Values["controller"]?.ToString() == "YouTube") ? "active" : "")"
+                               href="@Url.Action("Search", "YouTube")">Search</a>
+                        </li>
+                    </ul>
+                    <!-- Light/Dark Mode Toggle Buttons -->
+                    <div class="theme-toggle">
+                        <button id="light-mode-toggle" class="btn">Light Mode</button>
+                        <button id="dark-mode-toggle" class="btn">Dark Mode</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4 light-mode">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top pt-3 mt-4 text-muted">
+        <div class="container">
+            &copy; 2024 - Fadhil's YouTube API - <a href="https://github.com/YourRepositoryLink">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Get the saved theme mode from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        const body = document.body;
+        const container = document.querySelector('.container');
+        const lightModeToggle = document.getElementById('light-mode-toggle');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const navbar = document.querySelector('.navbar');
+        const formControls = document.querySelectorAll('.form-control');
+
+        // Apply saved theme if available
+        if (savedTheme) {
+            body.classList.remove('light-mode', 'dark-mode');
+            container.classList.remove('light-mode', 'dark-mode');
+            navbar.classList.remove('navbar-light', 'navbar-dark');
+            body.classList.add(savedTheme);
+            container.classList.add(savedTheme);
+            navbar.classList.add(savedTheme === 'dark-mode' ? 'navbar-dark' : 'navbar-light');
+            formControls.forEach(input => input.classList.add(savedTheme));
+            updateActiveButton(savedTheme); // Set the active button
+        }
+
+        // Theme toggle script
+        lightModeToggle.addEventListener('click', function () {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            container.classList.remove('dark-mode');
+            container.classList.add('light-mode');
+            navbar.classList.remove('navbar-dark');
+            navbar.classList.add('navbar-light');
+            formControls.forEach(input => {
+                input.classList.remove('dark-mode');
+                input.classList.add('light-mode');
+            });
+            localStorage.setItem('theme', 'light-mode');
+            updateActiveButton('light-mode');
+        });
+
+        darkModeToggle.addEventListener('click', function () {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            container.classList.remove('light-mode');
+            container.classList.add('dark-mode');
+            navbar.classList.remove('navbar-light');
+            navbar.classList.add('navbar-dark');
+            formControls.forEach(input => {
+                input.classList.remove('light-mode');
+                input.classList.add('dark-mode');
+            });
+            localStorage.setItem('theme', 'dark-mode');
+            updateActiveButton('dark-mode');
+        });
+
+        function updateActiveButton(mode) {
+            if (mode === 'light-mode') {
+                lightModeToggle.classList.add('active');
+                darkModeToggle.classList.remove('active');
+            } else {
+                darkModeToggle.classList.add('active');
+                lightModeToggle.classList.remove('active');
+            }
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

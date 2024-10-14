@@ -1,0 +1,140 @@
+﻿@model ProjectYoutube.Models.PaginatedSearchResultModel
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<div class="container">
+    <header>
+        <div class="logo">
+            <h1>Fadhil's YouTube API</h1>
+        </div>
+
+        <div class="search-message">
+            <h2>Search Results</h2>
+            <!-- Back to Search Button -->
+            <a href="@Url.Action("Search", "YouTube")" class="btn btn-primary back-button">Back to Search</a>
+        </div>
+
+        <div class="results">
+            @if (Model.Videos != null && Model.Videos.Any())
+            {
+                <div class="grid">
+                    @foreach (var video in Model.Videos)
+                    {
+                        <div class="card">
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/@video.VideoId" frameborder="0" allowfullscreen></iframe>
+                            <div class="card-body">
+                                <h5 class="card-title">@video.Title</h5>
+                                <p class="card-text">
+                                    @if (video.Description.Length > 50)
+                                    {
+                                        @($"{video.Description.Substring(0, 50)}...")
+                                    }
+                                    else
+                                    {
+                                        @video.Description
+                                    }
+                                </p>
+                                <p><strong>Duration:</strong> <span class="numeric-duration">@video.Duration</span></p>
+                                <p><strong>Channel:</strong> @video.Channel</p>
+                                <a href="https://www.youtube.com/watch?v=@video.VideoId" target="_blank" class="btn btn-primary">Watch on YouTube</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Pagination Controls -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        @if (Model.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("SearchResult", new { query = Model.Query, sortBy = Model.SortBy, duration = Model.Duration, 
+                                   category = Model.Category, uploadDate = Model.UploadDate, page = Model.CurrentPage - 1 })">Previous</a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("SearchResult", new { query = Model.Query, sortBy = Model.SortBy, duration = Model.Duration, 
+                                category = Model.Category, uploadDate = Model.UploadDate, page = i })">@i</a>
+                            </li>
+                        }
+
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("SearchResult", new { query = Model.Query, sortBy = Model.SortBy, duration = Model.Duration, 
+                                   category = Model.Category, uploadDate = Model.UploadDate, page = Model.CurrentPage + 1 })">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+            else
+            {
+                <p>No results found. Try searching for something else!</p>
+            }
+        </div>
+    </header>
+</div>
+
+
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .card img {
+            border-radius: 15px 15px 0 0;
+            max-height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+    .card-body {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #E4B1F0; /* Light pink */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #ff3385; /* Darker pink on hover */
+        }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #E4B1F0;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .back-button:hover {
+            background-color: #ff3385;
+            text-decoration: none;
+        }
+</style>

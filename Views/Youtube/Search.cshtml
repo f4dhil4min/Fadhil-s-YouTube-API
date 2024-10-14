@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Search YouTube Videos";
+}
+
+<div class="container">
+    <header>
+        <div class="logo">
+            <h1>Fadhil's YouTube API</h1>
+        </div>
+
+        <div class="search-message">
+            <h2>Search YouTube Videos</h2>
+        </div>
+        <!-- Back to Home Button -->
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>
+
+        <!-- Search Form with Filters -->
+        <div class="search-bar position-relative">
+            <form asp-action="Search" method="post" asp-controller="YouTube">
+                <div class="form-group position-relative">
+                    <!-- Adjusted the size of the search bar -->
+                    <input type="text" id="search-input" name="query" placeholder="Enter search term" class="form-control form-control-lg" style="width: 100%;" required />
+                    <!-- Suggestions box -->
+                    <ul id="suggestions-list" class="list-group" style="display: none; position: absolute; z-index: 1000; width: 100%; top: 100%;"></ul>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters mt-4">
+            <form asp-action="Search" method="post" asp-controller="YouTube">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="uploadDate">Upload Date:</label>
+                        <select name="uploadDate" class="form-control">
+                            <option value="">Any Time</option>
+                            <option value="today">Today</option>
+                            <option value="thisWeek">This Week</option>
+                            <option value="thisMonth">This Month</option>
+                            <option value="thisYear">This Year</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="duration">Video Duration:</label>
+                        <select name="duration" class="form-control">
+                            <option value="">Any Duration</option>
+                            <option value="short">Short (&lt; 4 minutes)</option>
+                            <option value="medium">Medium (4-20 minutes)</option>
+                            <option value="long">Long (&gt; 20 minutes)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="category">Category:</label>
+                        <input type="text" name="category" placeholder="Enter category" class="form-control" />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Apply Filters</button>
+            </form>
+        </div>
+    </header>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var $searchInput = $('#search-input');
+            var $suggestionsList = $('#suggestions-list');
+
+            // Autocomplete on input change
+            $searchInput.on('input', function () {
+                var query = $(this).val();
+
+                if (query.length >= 2) { // Fetch suggestions if the input is 2 or more characters
+                    $.ajax({
+                        url: '@Url.Action("GetSearchSuggestions", "YouTube")',
+                        data: { query: query },
+                        success: function (response) {
+                            var suggestions = response.suggestions;
+                            $suggestionsList.empty().show();
+
+                            if (suggestions.length > 0) {
+                                suggestions.forEach(function (suggestion) {
+                                    // Display the title and optionally the thumbnail
+                                    $suggestionsList.append('<li class="list-group-item suggestion-item">' + suggestion.title +
+                                        '<img src="' + suggestion.thumbnail + '" style="width: 50px; height: 50px; float: right; margin-left: 10px;"/>' +
+                                        '</li>');
+                                });
+                            } else {
+                                $suggestionsList.hide();
+                            }
+                        },
+                        error: function () {
+                            console.error('Error fetching suggestions');
+                            $suggestionsList.hide(); // Hide the list on error
+                        }
+                    });
+                } else {
+                    $suggestionsList.hide();
+                }
+            });
+
+            // Set the clicked suggestion to the input box
+            $suggestionsList.on('click', '.suggestion-item', function () {
+                var selectedSuggestion = $(this).text();
+                $searchInput.val(selectedSuggestion);
+                $suggestionsList.hide();
+            });
+
+            // Hide suggestions when clicking outside
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('#search-input, #suggestions-list').length) {
+                    $suggestionsList.hide();
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    /* Adjust suggestions list appearance */
+    #suggestions-list {
+        max-height: 200px;
+        overflow-y: auto; /* Scroll if list gets too long */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    }
+
+    /* Adjust individual suggestion item appearance */
+    .suggestion-item {
+        cursor: pointer;
+    }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+</style>

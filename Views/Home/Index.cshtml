@@ -1,0 +1,115 @@
+﻿@model ProjectYoutube.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="welcome-message">
+    <h1>Welcome to Fadhil's YouTube API</h1>
+    <p>Easily search and explore YouTube videos with Fadhil's YouTube API.</p>
+    <p>Find what you're looking for in just a few clicks.</p>
+
+    <!-- Search Button -->
+    <div class="search-button">
+        <a href="@Url.Action("Search", "YouTube")" class="btn btn-primary">Go to Search</a>
+    </div>
+</div>
+
+<!-- Trending Videos Section -->
+<section class="trending-section">
+    <h2>Trending YouTube Videos</h2>
+    <div class="grid">
+        @if (Model.TrendingVideos != null && Model.TrendingVideos.Any())
+        {
+            @foreach (var video in Model.TrendingVideos)
+            {
+                <div class="card">
+                    <!-- Embed Video -->
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/@video.VideoId" frameborder="0" allowfullscreen></iframe>
+                    <div class="card-body">
+                        <h5 class="card-title">@video.Title</h5>
+                        <p class="card-text">
+                            @if (video.Description.Length > 50)
+                            {
+                                @($"{video.Description.Substring(0, 50)}...")
+                            }
+                            else
+                            {
+                                @video.Description
+                            }
+                        </p>
+                        <p><strong>Duration:</strong> <span class="numeric-duration">@video.Duration</span></p>
+                        <p>
+                            <strong>Channel:</strong>
+                            <img src="@video.ChannelThumbnailUrl" alt="Channel Thumbnail" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;" />
+                            @video.Channel
+                        </p>
+                        <a href="https://www.youtube.com/watch?v=@video.VideoId" target="_blank" class="btn btn-primary">Watch on YouTube</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No trending videos available right now.</p>
+        }
+    </div>
+</section>
+
+<!-- Recent Searches Section -->
+<section class="recent-searches-section">
+    <h2>Recent Searches</h2>
+    <ul>
+        @if (Model.RecentSearches != null && Model.RecentSearches.Any())
+        {
+            @foreach (var search in Model.RecentSearches)
+            {
+                <li>
+                    <a href="@Url.Action("Search", "YouTube", new { query = search })">@search</a>
+                </li>
+            }
+        }
+        else
+        {
+            <li>No recent searches yet. Start exploring!</li>
+        }
+    </ul>
+</section>
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+        gap: 20px; /* Space between cards */
+        padding: 20px 0; /* Space above and below the grid */
+    }
+
+    .card {
+        background-color: #ffffff; /* White background for cards */
+        border: 2px solid #E4B1F0; /* Light pink border */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        transition: transform 0.3s ease; /* Smooth transition */
+    }
+
+        .card:hover {
+            transform: scale(1.05); /* Zoom on hover */
+            border-color: #ff3385; /* Darker border color on hover */
+        }
+
+    .card-body {
+        padding: 15px; /* Space inside the card body */
+    }
+
+    .card h5 {
+        font-size: 1.25rem; /* Title font size */
+        margin-top: 10px; /* Margin on top */
+        color: #433878; /* Brand color */
+    }
+
+    .card p {
+        font-size: 14px; /* Text size */
+        color: #555; /* Darker text for better contrast */
+        margin-bottom: 15px; /* Space below text */
+    }
+</style>

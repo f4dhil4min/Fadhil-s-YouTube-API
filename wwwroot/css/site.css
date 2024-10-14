@@ -1,0 +1,801 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Pink Button Styling */
+.btn-primary {
+    background-color: #E4B1F0 !important; /* Light pink background */
+    color: white !important; /* White text */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+    .btn-primary:hover {
+        background-color: #ff3385 !important; /* Darker pink on hover */
+    }
+
+
+<link rel="stylesheet" href="~/css/site.css" / >
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    background-image: url('https://t3.ftcdn.net/jpg/05/15/29/74/360_F_515297408_GRDBJY7xu6b5di37wldGRrJ2Y2Coyzp7.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif; /* Use a modern Google font like Poppins for a sleek look */
+    color: #333;
+    transition: background-color 0.3s ease; /* Smooth transition for background changes */
+}
+
+/* Navigation Bar */
+.navbar {
+    background: linear-gradient(90deg, #433878, #7E60BF) !important; /* Gradient for a modern look */
+    color: #fff !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase; /* Modern feel with uppercase text */
+    letter-spacing: 1px;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #ff6699 !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Header */
+header {
+    background-color: #7E60BF;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+    animation: slide-down 1s ease; /* Add slide animation to header */
+}
+
+/* Header Animation */
+@keyframes slide-down {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Welcome Text */
+h1 {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Add a glow effect */
+    margin-bottom: 20px;
+}
+/* Welcome Message Styles */
+.welcome-message {
+    color: black; /* Text color */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center text */
+    margin: 20px 0; /* Margin for spacing */
+    font-size: 1.5rem; /* Font size */
+    line-height: 1.5; /* Line height for readability */
+}
+
+p {
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles (Play Button and Search Button) */
+.btn-primary {
+    background-color: #E4B1F0 !important;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px; /* Round button for modern design */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+    .btn-primary:hover {
+        background-color: #ff3385 !important;
+        transform: translateY(-3px); /* Lift button on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+/* Video Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    opacity: 0;
+    animation: fade-in 1.5s ease forwards; /* Fade-in animation for smooth appearance */
+}
+
+/* Card Hover Effect */
+.card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+    .card:hover {
+        transform: scale(1.05); /* Zoom on hover */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    }
+
+    .card img {
+        border-radius: 15px 15px 0 0;
+        max-height: 180px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .card h5 {
+        font-size: 1.25rem;
+        margin-top: 10px;
+        color: #433878; /* Matching brand color */
+    }
+
+    .card p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+/* Fade-in Animation for Grid */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    animation: fade-in 1s ease forwards;
+}
+
+    .pagination .page-item .page-link {
+        background-color: #E4B1F0;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        border-radius: 50px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .pagination .page-item .page-link:hover {
+            background-color: #ff3385;
+        }
+
+    .pagination .active .page-link {
+        background-color: #ff6699 !important;
+        border-color: #ff6699;
+    }
+
+/* Footer */
+footer {
+    background-color: #FFE1FF;
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for footer */
+}
+/* Center the Welcome Message */
+.welcome-message {
+    text-align: center; /* Center text */
+    margin: 50px auto; /* Add margin to center content vertically */
+    color: black; /* Change text color to black */
+    background-color: #7E60BF; /* Light purple background */
+    padding: 20px; /* Add padding inside the box for spacing */
+    border-radius: 10px; /* Rounded corners for the box */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+    /* Ensure paragraph text is also black */
+    .welcome-message p {
+        color: black; /* Ensure paragraph text is also black */
+    }
+
+/* Center the Search Message */
+.search-message {
+    text-align: center; /* Center text */
+    margin-bottom: 20px; /* Add some margin below the heading */
+    color: black; /* Change text color to black */
+}
+/* Make the entire page use Flexbox */
+html, body {
+    height: 100%; /* Ensure the body takes the full height of the page */
+    margin: 0; /* Remove any default margin */
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+}
+
+/* Main content takes up all available space, pushing footer to the bottom */
+.container {
+    flex: 1; /* This will make the container fill the available space */
+    max-width: 960px; /* Limiting the container width for better readability */
+    margin: 20px auto; /* Center the container */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Adding a slight transparency to the background */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Adding shadow for depth */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #FFE1FF; /* Light pink background for footer */
+    color: #333; /* Darker text color */
+    text-align: center; /* Center footer text */
+    padding: 10px 0; /* Padding for spacing */
+    width: 100%; /* Full width */
+    margin-top: auto; /* Ensure it sticks to the bottom */
+}
+/* Search Bar Styles */
+.search-bar {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center content horizontally */
+    margin-bottom: 30px; /* Space below the search bar */
+    background-color: #E4B1F0; /* Light purple background for search bar */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners for the box */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+    .search-bar form {
+        display: flex; /* Flexbox for the form */
+        width: 100%; /* Allow the form to take full width of the container */
+        max-width: 600px; /* Set a max width for the form */
+    }
+
+    .search-bar input[type="text"] {
+        flex: 1; /* Allow the input to grow and fill available space */
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        background-color: #E4B1F0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        margin-left: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .search-bar button:hover {
+            background-color: #ff3385;
+        }
+.welcome-message {
+    text-align: center;
+    margin: 50px auto;
+    color: black;
+    padding: 20px;
+    background-color: #E4B1F0;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+    margin-top: 20px;
+}
+
+.trending-section, .recent-searches-section {
+    margin: 40px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .card img {
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+    }
+
+.card-body {
+    padding: 10px;
+    text-align: center;
+}
+
+.recent-searches-section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+    .recent-searches-section ul li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+        .recent-searches-section ul li a {
+            color: #433878;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .recent-searches-section ul li a:hover {
+                color: #ff6699;
+            }
+
+
+
+/* Results Styles */
+.results {
+    background-color: #E4B1F0; /* Light purple background for results section */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+/* Apply the Poppins font to the body */
+body {
+    font-family: 'Poppins', sans-serif; /* Use the beautiful Poppins font */
+}
+
+/* Welcome Message */
+.welcome-message {
+    color: black; /* Change text color to black */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center text */
+    margin: 20px 0; /* Add some margin for spacing */
+    font-size: 1.5rem; /* Adjust font size for emphasis */
+    line-height: 1.5; /* Add line height for better readability */
+}
+/* Results Styles */
+.results {
+    background-color: #E4B1F0; /* Light purple background for results section */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+/* Grid Layout for Video Cards */
+.grid {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid for video cards */
+    gap: 20px; /* Space between cards */
+    padding: 20px 0; /* Space above and below the grid */
+}
+
+/* Card Styles */
+.card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+    .card:hover {
+        transform: scale(1.05); /* Zoom on hover */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    }
+
+    .card img {
+        border-radius: 15px 15px 0 0;
+        max-height: 180px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .card h5 {
+        font-size: 1.25rem;
+        margin-top: 10px;
+        color: #433878; /* Matching brand color */
+    }
+
+    .card p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+/* Results Styles */
+.results {
+    background-color: #E4B1F0; /* Light purple background for results section */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+/* Centered Title for Results */
+.results-title {
+    text-align: center; /* Center the results title */
+    font-size: 2rem; /* Larger font size for emphasis */
+    color: #433878; /* Dark color for better visibility */
+    margin: 20px 0; /* Margin above and below */
+}
+
+/* Grid Layout for Video Cards */
+.grid {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Set to 3 columns */
+    gap: 20px; /* Space between cards */
+    padding: 20px 0; /* Space above and below the grid */
+}
+
+/* Card Styles */
+.card {
+    background-color: #ffffff; /* White background for cards */
+    border: 2px solid #E4B1F0; /* Light pink border */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+    .card:hover {
+        transform: scale(1.05); /* Zoom on hover */
+        border-color: #ff3385; /* Darker border color on hover */
+    }
+.card-body {
+    padding: 15px; /* Space inside the card body */
+}
+
+    .card img {
+        border-radius: 15px 15px 0 0;
+        max-height: 180px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .card h5 {
+        font-size: 1.25rem;
+        margin-top: 10px;
+        color: #433878; /* Matching brand color */
+    }
+
+    .card p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+/* Button Styles */
+.btn-primary {
+    background-color: #E4B1F0 !important;
+    color: white; /* White text */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    text-align: center; /* Center text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+    .btn-primary:hover {
+        background-color: #ff3385 !important; /* Change color on hover */
+    }
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    background-image: url('https://t3.ftcdn.net/jpg/05/15/29/74/360_F_515297408_GRDBJY7xu6b5di37wldGRrJ2Y2Coyzp7.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif; /* Use a modern Google font like Poppins for a sleek look */
+    color: #333;
+    transition: background-color 0.3s ease; /* Smooth transition for background changes */
+}
+
+/* Results Styles */
+.results {
+    background-color: rgba(228, 177, 240, 0.9); /* Light purple background for results section with transparency */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Add shadow for depth */
+}
+
+/* Centered Title for Results */
+.results-title {
+    text-align: center; /* Center the results title */
+    font-size: 2.5rem; /* Larger font size for emphasis */
+    color: #433878; /* Dark color for better visibility */
+    margin: 20px 0; /* Margin above and below */
+}
+
+/* Grid Layout for Video Cards */
+.grid {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Set to 3 columns */
+    gap: 20px; /* Space between cards */
+    padding: 20px 0; /* Space above and below the grid */
+}
+
+/* Card Styles */
+.card {
+    background-color: #ffffff; /* White background for cards */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Position relative for absolute elements */
+}
+
+    /* Card Hover Effect */
+    .card:hover {
+        transform: translateY(-5px); /* Lift card on hover */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    }
+
+    /* Card Image Styles */
+    .card img {
+        border-radius: 15px 15px 0 0; /* Rounded top corners */
+        height: 180px; /* Fixed height for landscape orientation */
+        object-fit: cover; /* Cover the area */
+        width: 100%; /* Full width */
+    }
+
+    /* Card Title Styles */
+    .card h5 {
+        font-size: 1.5rem; /* Larger font size for titles */
+        margin-top: 10px; /* Margin on top */
+        color: #433878; /* Brand color */
+        font-weight: 600; /* Medium weight */
+    }
+
+    /* Card Text Styles */
+    .card p {
+        font-size: 14px; /* Text size */
+        color: #555; /* Darker text for better contrast */
+        margin-bottom: 15px; /* Space below text */
+    }
+
+/* Button Styles */
+.btn-primary {
+    background-color: #E4B1F0 !important; /* Button background */
+    color: white; /* White text */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    text-align: center; /* Center text */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+    .btn-primary:hover {
+        background-color: #ff3385 !important; /* Change color on hover */
+        transform: scale(1.05); /* Slightly enlarge button on hover */
+    }
+
+/* Welcome Message Styles */
+.welcome-message {
+    color: black; /* Change text color to black */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center text */
+    margin: 20px 0; /* Add some margin for spacing */
+    font-size: 1.5rem; /* Adjust font size for emphasis */
+    line-height: 1.5; /* Add line height for better readability */
+}
+
+/* Button Styles for Card */
+.card .btn-primary {
+    width: 100%; /* Full width for the button */
+    padding: 12px; /* Padding */
+    border-radius: 25px; /* More rounded */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr; /* 1 column for small screens */
+    }
+}
+
+/* General Box Styling */
+.welcome-message {
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.5s ease;
+}
+
+/* Light Mode - Default */
+body.light-mode .welcome-message {
+    background-color: #E4B1F0; /* Light purple color */
+    color: black;
+}
+
+/* Dark Mode */
+body.dark-mode .welcome-message {
+    background-color: #333333; /* Dark grey background in dark mode */
+    color: white;
+}
+/* General Box Styling for Search and Results */
+.container, .search-bar, .filters, .results {
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.5s ease;
+}
+
+/* Light Mode - Default */
+body.light-mode .container,
+body.light-mode .search-bar,
+body.light-mode .filters,
+body.light-mode .results {
+    background-color: #E4B1F0; /* Light purple background */
+    color: black;
+}
+
+/* Dark Mode */
+body.dark-mode .container,
+body.dark-mode .search-bar,
+body.dark-mode .filters,
+body.dark-mode .results {
+    background-color: #333333; /* Dark grey background */
+    color: white;
+}
+
+/* Adjusting Input Fields for Dark Mode */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode button {
+    background-color: #444; /* Darker input background */
+    color: white; /* White text in inputs */
+    border-color: #666; /* Border color */
+}
+<style >
+/* Light Mode Styles */
+.welcome-message, .search-bar, .results, .filters {
+    background-color: #E4B1F0; /* Light purple */
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #E4B1F0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #ff3385;
+    }
+
+/* Dark Mode Styles */
+body.dark-mode .welcome-message,
+body.dark-mode .search-bar,
+body.dark-mode .results,
+body.dark-mode .filters,
+body.dark-mode .btn-primary {
+    background-color: #333; /* Dark grey for boxes */
+    color: white;
+    border-color: #444; /* Grey for dark mode borders */
+}
+
+body.dark-mode .btn-primary {
+    background-color: #666; /* Grey button in dark mode */
+}
+
+    body.dark-mode .btn-primary:hover {
+        background-color: #444; /* Darker grey on hover */
+    }
+
+</style >
+
+.search-bar, .filters, .hot-trends, .search-history {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button#voice-search {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    color: #6c757d;
+}
+
+#voice-search:hover {
+    color: #495057;
+}
+/* General Button Styling */
+.btn-primary {
+    background-color: #E4B1F0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #666;
+}
+
+    body.dark-mode .btn-primary:hover {
+        background-color: #444;
+    }
+
+.numeric-duration {
+    font-family: 'Roboto Mono', monospace; /* Keep the font */
+    font-size: 0.9rem; /* Smaller size */
+    font-weight: bold; /* Make it bold */
+    color: #ff6699; /* Color of your choice */
+}
+
+
